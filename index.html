@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог техніки — Supabase</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>Каталог комп'ютерної техніки</h1>
+    <p id="status" role="status" aria-live="polite" class="status-bar"></p>
+
+    <!-- Панель пошуку, фільтрації та сортування -->
+    <section class="controls-panel" aria-label="Пошук та фільтрація">
+      <div class="control-group">
+        <label for="search-input">Пошук за назвою:</label>
+        <input id="search-input" type="search" placeholder="Введіть назву товару...">
+      </div>
+
+      <div class="control-group">
+        <label for="category-filter">Категорія:</label>
+        <select id="category-filter">
+          <option value="all">Усі категорії</option>
+          <option value="Ноутбуки">Ноутбуки</option>
+          <option value="Периферія">Периферія</option>
+          <option value="Монітори">Монітори</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="sort-select">Сортування:</label>
+        <select id="sort-select">
+          <option value="id-asc">За замовчуванням (ID ↑)</option>
+          <option value="price-asc">Ціна: від дешевших</option>
+          <option value="price-desc">Ціна: від дорожчих</option>
+          <option value="name-asc">Назва: А → Я</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Список записів із БД -->
+    <section aria-labelledby="catalog-heading">
+      <h2 id="catalog-heading">Доступні товари</h2>
+      <ul id="products-list" class="products-list"></ul>
+    </section>
+
+    <!-- Форма додавання нового запису -->
+    <section class="form-section" aria-labelledby="form-heading">
+      <h2 id="form-heading">Додати новий товар</h2>
+      <form id="product-form">
+        <div class="form-row">
+          <label for="name">Назва моделі *</label>
+          <input id="name" name="name" required maxlength="150" placeholder="Наприклад: ThinkPad X1 Carbon">
+        </div>
+
+        <div class="form-row">
+          <label for="brand">Бренд *</label>
+          <input id="brand" name="brand" required maxlength="100" placeholder="Наприклад: Lenovo">
+        </div>
+
+        <div class="form-row">
+          <label for="category">Категорія *</label>
+          <select id="category" name="category" required>
+            <option value="Ноутбуки">Ноутбуки</option>
+            <option value="Периферія">Периферія</option>
+            <option value="Монітори">Монітори</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="price">Ціна (грн) *</label>
+          <input id="price" name="price" type="number" step="0.01" min="1" max="1000000" required placeholder="25000">
+        </div>
+
+        <button type="submit" id="submit-btn">Додати товар</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
